@@ -9,10 +9,11 @@
     tools:context=".LoginActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/mar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,22 +76,35 @@
                 android:minHeight="48dp"
                 android:padding="5dp" />
 
-            <Button
-                android:id="@+id/loginbtn"
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:text="Forgot password?" />
+
+            <Button
+                android:id="@+id/loginbtn"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_style"
                 android:elegantTextHeight="false"
+                android:gravity="center"
                 android:text="Login" />
 
             <Button
                 android:id="@+id/createAccoutbtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_width="170dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
                 android:background="@drawable/button_style"
-                android:text="Create Account" />
+                android:gravity="center"
+                android:text="Create Account"
+                android:textSize="12dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
