@@ -2,22 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    android:padding="10dp"
     tools:context=".DashboardActivity">
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FDE3DB"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -66,13 +54,13 @@
 
                 <Button
                     android:id="@+id/connectBtn"
-                    android:layout_width="130dp"
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
                     android:text="Join"
-                    app:icon="@drawable/connect_icon" />
+                    app:icon="@drawable/link" />
 
                 <Button
                     android:id="@+id/shareLinkBtn"
@@ -82,8 +70,23 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
                     android:text="Share"
-                    app:icon="@drawable/share_icon" />
+                    app:icon="@drawable/share" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="4dp"
+        android:background="#FDE3DB"
+        app:elevation="8dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
