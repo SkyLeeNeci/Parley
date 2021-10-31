@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.jitsi.meet.sdk.JitsiMeet;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 
 import java.net.MalformedURLException;
@@ -30,15 +32,19 @@ public class DashboardActivity extends AppCompatActivity {
         URL url;
         try {
             url = new URL("https://meet.jit.si");
+
+            JitsiMeetConferenceOptions jitsiMeetConferenceOptions = new JitsiMeetConferenceOptions.Builder()
+                    .setServerURL(url).setWelcomePageEnabled(false).build();
+            JitsiMeet.setDefaultConferenceOptions(jitsiMeetConferenceOptions);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-
-        JitsiMeetConferenceOptions jitsiMeetConferenceOptions;
-
         connectBtn.setOnClickListener(v ->{
+            JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder().setRoom(secretCode.getText().toString())
+                    .setWelcomePageEnabled(false).build();
 
+            JitsiMeetActivity.launch(DashboardActivity.this,options);
         });
     }
 }
