@@ -39,7 +39,7 @@ public class ChangePassByEmail extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(ChangePassByEmail.this, "Check email!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ChangePassByEmail.this,LoginActivity.class));
-
+                            finish();
                         }
                     });
 

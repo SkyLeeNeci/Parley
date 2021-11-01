@@ -8,19 +8,40 @@
     tools:context=".DashboardActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#D8D8D8"
-            android:orientation="vertical">
+            android:orientation="vertical"></LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#D8D8D8"
+            android:orientation="vertical"
+            tools:visibility="visible">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -76,6 +97,24 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#D8D8D8"
+            android:orientation="vertical"></LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="wrap_content"
@@ -83,6 +122,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginBottom="4dp"
         android:background="#FDE3DB"
+        android:visibility="visible"
         app:elevation="8dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,4 +130,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

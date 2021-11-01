@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/gmail"
+                android:drawableLeft="@drawable/changepassword"
                 android:drawablePadding="10dp"
                 android:ems="10"
                 android:hint="New password "
