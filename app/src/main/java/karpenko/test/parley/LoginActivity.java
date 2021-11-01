@@ -1,22 +1,20 @@
 package karpenko.test.parley;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText emailBox, passwordBox;
+    TextView changePass;
     Button loginBtn, createAccountBtn;
     FirebaseAuth auth;
 
@@ -25,10 +23,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        emailBox = findViewById(R.id.emailBox);
+        emailBox = findViewById(R.id.userEmailBox);
         passwordBox = findViewById(R.id.passwordBox);
-        loginBtn = findViewById(R.id.loginbtn);
-        createAccountBtn = findViewById(R.id.createAccoutbtn);
+        loginBtn = findViewById(R.id.loginBtn);
+        changePass = findViewById(R.id.changePass);
+        createAccountBtn = findViewById(R.id.createAccBtn);
         auth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(v -> {
@@ -50,7 +49,9 @@ public class LoginActivity extends AppCompatActivity {
 
         createAccountBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
 
-
+        changePass.setOnClickListener(v ->{
+            startActivity(new Intent(LoginActivity.this,ChangePassByEmail.class));
+        });
 
     }
 }

@@ -1,6 +1,5 @@
 package karpenko.test.parley;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,10 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,10 +25,10 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         userName = findViewById(R.id.userNameBox);
-        userEmail = findViewById(R.id.emailBox);
+        userEmail = findViewById(R.id.userEmailBox);
         userPassword = findViewById(R.id.passwordBox);
-        createAccountBtn = findViewById(R.id.createAccoutbtn);
-        logInBtn = findViewById(R.id.loginbtn);
+        createAccountBtn = findViewById(R.id.createAccBtn);
+        logInBtn = findViewById(R.id.loginBtn);
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -63,7 +58,9 @@ public class SignUpActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
+
             });
+
         });
 
     }
