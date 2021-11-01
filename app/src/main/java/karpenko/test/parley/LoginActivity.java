@@ -44,14 +44,13 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-
+            emailBox.getText().clear();
+            passwordBox.getText().clear();
         });
 
         createAccountBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
 
-        changePass.setOnClickListener(v ->{
-            startActivity(new Intent(LoginActivity.this,ChangePassByEmail.class));
-        });
+        changePass.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,ChangePassByEmail.class)));
 
     }
 }
