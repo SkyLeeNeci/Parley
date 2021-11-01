@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoActionBar">
         <activity
+            android:name=".ChangePassByEmail"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePassActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardActivity"
             android:exported="false" />
         <activity
