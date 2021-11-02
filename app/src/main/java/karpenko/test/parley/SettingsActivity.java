@@ -5,6 +5,7 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -29,8 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        micro = findViewById(R.id.microSetting);
-        cam = findViewById(R.id.camSetting);
+
         passChange = findViewById(R.id.changePassBasic);
         deleteAcc = findViewById(R.id.deleteAccBtn);
         home = findViewById(R.id.homeBtn);
@@ -38,16 +38,6 @@ public class SettingsActivity extends AppCompatActivity {
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
 
-        micro.setOnClickListener(v ->{
-            if(micro.isChecked()){
-                    JitsiMeetConferenceOptions jitsiMeetConferenceOptions = new JitsiMeetConferenceOptions.Builder().setAudioMuted(true).build();
-                    JitsiMeet.setDefaultConferenceOptions(jitsiMeetConferenceOptions);
-
-            }else{
-                JitsiMeetConferenceOptions jitsiMeetConferenceOptions = new JitsiMeetConferenceOptions.Builder().setAudioMuted(false).build();
-                JitsiMeet.setDefaultConferenceOptions(jitsiMeetConferenceOptions);
-            }
-        });
 
         home.setOnClickListener(v ->{
             startActivity(new Intent(SettingsActivity.this,DashboardActivity.class));

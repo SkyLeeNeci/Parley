@@ -46,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
             url = new URL("https://meet.jit.si");
 
             JitsiMeetConferenceOptions jitsiMeetConferenceOptions = new JitsiMeetConferenceOptions.Builder()
-                    .setServerURL(url).setWelcomePageEnabled(false).build();
+                    .setServerURL(url).setWelcomePageEnabled(false).setAudioMuted(true).setVideoMuted(true).build();
             JitsiMeet.setDefaultConferenceOptions(jitsiMeetConferenceOptions);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -68,9 +68,10 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         logOut.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
+
             startActivity(new Intent(DashboardActivity.this,LoginActivity.class));
-            finish();
+            FirebaseAuth.getInstance().signOut();
+            DashboardActivity.this.finish();
         });
         shareBtn.setOnClickListener(v ->{
 
