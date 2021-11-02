@@ -25,7 +25,6 @@ public class DashboardActivity extends AppCompatActivity {
     EditText secretCode;
     Button connectBtn, shareBtn;
     BottomNavigationItemView home,settings,history,logOut;
-    CardView cardViewHome, cardViewSettings, cardViewHistory;
 
 
 
@@ -41,9 +40,6 @@ public class DashboardActivity extends AppCompatActivity {
         settings = findViewById(R.id.settingsBtn);
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
-        cardViewHistory = findViewById(R.id.cardViewHistory);
-        cardViewHome = findViewById(R.id.cardViewHome);
-        cardViewSettings = findViewById(R.id.cardViewSettings);
 
         URL url;
         try {
@@ -64,30 +60,27 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         settings.setOnClickListener(v -> {
-
-            cardViewHome.setVisibility(View.INVISIBLE);
-            cardViewHistory.setVisibility(View.INVISIBLE);
-            cardViewSettings.setVisibility(View.VISIBLE);
-        });
-
-        home.setOnClickListener(v -> {
-
-            cardViewHome.setVisibility(View.VISIBLE);
-            cardViewHistory.setVisibility(View.INVISIBLE);
-            cardViewSettings.setVisibility(View.INVISIBLE);
+            startActivity(new Intent(DashboardActivity.this,SettingsActivity.class));
         });
 
         history.setOnClickListener(v -> {
-
-            cardViewHome.setVisibility(View.INVISIBLE);
-            cardViewHistory.setVisibility(View.VISIBLE);
-            cardViewSettings.setVisibility(View.INVISIBLE);
+            startActivity(new Intent(DashboardActivity.this,VisitHistoryActivity.class));
         });
 
         logOut.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(DashboardActivity.this,LoginActivity.class));
             finish();
+        });
+        shareBtn.setOnClickListener(v ->{
+
+            String code;
+            code = secretCode.getText().toString();
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Hey! Join to my video chat by this code : " + code + " . Enter it in app : https://play.google.com/ ");
+            startActivity(Intent.createChooser(intent,"Share to your friends"));
         });
     }
 }
