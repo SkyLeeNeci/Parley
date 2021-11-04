@@ -1,27 +1,16 @@
 package karpenko.test.parley;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Switch;
 import android.widget.TextView;
-
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-
-import org.jitsi.meet.sdk.JitsiMeet;
-import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
-
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
-    Switch micro, cam;
+
     TextView passChange, deleteAcc;
     BottomNavigationItemView home,settings,history,logOut;
 
@@ -39,10 +28,17 @@ public class SettingsActivity extends AppCompatActivity {
         logOut = findViewById(R.id.logOutBtn);
 
 
-        home.setOnClickListener(v ->{
-            startActivity(new Intent(SettingsActivity.this,DashboardActivity.class));
-        });
+        home.setOnClickListener(v -> startActivity(new Intent(SettingsActivity.this,DashboardActivity.class)));
 
+        logOut.setOnClickListener(v ->{
+            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("remember", "false");
+            editor.apply();
+            startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
+            FirebaseAuth.getInstance().signOut();
+            finishAffinity();
+        });
 
     }
 }

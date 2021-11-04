@@ -1,14 +1,14 @@
 package karpenko.test.parley;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView changePass;
     Button loginBtn, createAccountBtn;
     FirebaseAuth auth;
+    CheckBox rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,14 @@ public class LoginActivity extends AppCompatActivity {
         changePass = findViewById(R.id.changePass);
         createAccountBtn = findViewById(R.id.createAccBtn);
         auth = FirebaseAuth.getInstance();
+        rememberMe = findViewById(R.id.rememderMe);
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String checkBox =  preferences.getString("remember", "");
+        if(checkBox.equals("true")){
+            startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
+        }else if(checkBox.equals("false")){
+            Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
+        }
 
         loginBtn.setOnClickListener(v -> {
 
@@ -40,17 +49,37 @@ public class LoginActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
                     Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+
                 }else{
                     Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-            emailBox.getText().clear();
-            passwordBox.getText().clear();
         });
 
         createAccountBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
 
-        changePass.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this,ChangePassByEmail.class)));
+
+        changePass.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ChangePassByEmail.class)));
+
+        rememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(buttonView.isChecked()){
+
+                SharedPreferences preferences1 = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences1.edit();
+                editor.putString("remember", "true");
+                editor.apply();
+                Toast.makeText(LoginActivity.this, "Remembered!", Toast.LENGTH_SHORT).show();
+
+            }else if(!buttonView.isChecked()){
+
+                SharedPreferences preferences1 = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences1.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+                Toast.makeText(LoginActivity.this, "Forgot!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 }

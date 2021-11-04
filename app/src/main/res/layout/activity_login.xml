@@ -31,14 +31,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="25dp"
                 app:srcCompat="@drawable/discussion" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="Parley"
@@ -76,20 +75,39 @@
                 android:minHeight="48dp"
                 android:padding="5dp" />
 
-            <TextView
-                android:id="@+id/changePass"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:gravity="right"
-                android:text="Forgot password?" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/rememderMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="Remember me "
+                    android:textColor="#636363"
+                    android:textSize="14dp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/changePass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:text="Forgot password?" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/loginBtn"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/button_style"
                 android:elegantTextHeight="false"
                 android:gravity="center"
@@ -100,7 +118,7 @@
                 android:layout_width="170dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:layout_margin="20dp"
+                android:layout_margin="15dp"
                 android:background="@drawable/button_style"
                 android:gravity="center"
                 android:text="Create Account"
