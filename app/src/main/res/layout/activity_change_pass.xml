@@ -44,22 +44,6 @@
                 android:textSize="34sp" />
 
             <EditText
-                android:id="@+id/passwordBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/lock"
-                android:drawablePadding="10dp"
-                android:ems="10"
-                android:hint="Current password "
-                android:inputType="textPassword"
-                android:minHeight="48dp"
-                android:padding="5dp" />
-
-            <EditText
                 android:id="@+id/newPassBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +53,7 @@
                 android:drawablePadding="10dp"
                 android:ems="10"
                 android:hint="New password "
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:padding="5dp"
                 android:scrollbarAlwaysDrawHorizontalTrack="false" />
@@ -79,7 +63,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="12dp"
+                android:layout_margin="15dp"
                 android:background="@drawable/button_style"
                 android:text="Change Password" />
 
