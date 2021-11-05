@@ -1,5 +1,6 @@
 package karpenko.test.parley;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -50,6 +53,13 @@ public class SignUpActivity extends AppCompatActivity {
 
             auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
+                    auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task1 -> {
+                        if(task1.isSuccessful()){
+                            Toast.makeText(SignUpActivity.this, "Check email and verify account", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(SignUpActivity.this, task1.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     firebaseFirestore.collection("users")
                             .document()
                             .set(user).addOnSuccessListener(unused ->
