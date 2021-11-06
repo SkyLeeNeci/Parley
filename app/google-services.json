@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "141783523039-am2mag6kog1t5o7u5gmjukakvei202jl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "karpenko.test.parley",
+            "certificate_hash": "dbc3407fb9a52101f6646699bc40244aa1ffef1d"
+          }
+        },
+        {
           "client_id": "141783523039-iersgh9r01kraj1qajnl063ji01essvq.apps.googleusercontent.com",
           "client_type": 3
         }

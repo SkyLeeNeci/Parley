@@ -8,6 +8,16 @@
     android:background="@color/teal_700"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/signInWithGoogle"
+        android:layout_width="243dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mar"
+        app:srcCompat="@drawable/images_btn_google_signin_dark_normal" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/mar"
         android:layout_width="match_parent"
