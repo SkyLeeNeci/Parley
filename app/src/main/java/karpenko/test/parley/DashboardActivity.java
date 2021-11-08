@@ -11,20 +11,34 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
+import com.google.firebase.firestore.core.UserData;
+
 import org.jitsi.meet.sdk.JitsiMeet;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DashboardActivity extends AppCompatActivity {
 
     EditText secretCode;
     Button connectBtn, shareBtn;
     BottomNavigationItemView home,settings,history,logOut;
-
+    FirebaseFirestore firestore;
+    FirebaseAuth auth;
+    String userID , roomCode;
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    Date date = new Date();
 
 
     @Override
@@ -39,6 +53,8 @@ public class DashboardActivity extends AppCompatActivity {
         settings = findViewById(R.id.settingsBtn);
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
+        firestore = FirebaseFirestore.getInstance();
+        auth= FirebaseAuth.getInstance();
 
         URL url;
         try {
@@ -56,6 +72,16 @@ public class DashboardActivity extends AppCompatActivity {
                     .setWelcomePageEnabled(false).build();
 
             JitsiMeetActivity.launch(DashboardActivity.this,options);
+
+            userID = auth.getCurrentUser().getUid();
+            roomCode = secretCode.getText().toString();
+
+            DocumentReference documentReference = firestore.collection("userVisitedRoom").document();
+            Map<String,Object> userHistory = new HashMap<>();
+            userHistory.put("userID", userID);
+            userHistory.put("roomCode", roomCode);
+            userHistory.put("date", formatter.format(date));
+            documentReference.set(userHistory).addOnSuccessListener(unused -> Toast.makeText(DashboardActivity.this, "Code saved", Toast.LENGTH_SHORT).show());
         });
 
         settings.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this,SettingsActivity.class)));

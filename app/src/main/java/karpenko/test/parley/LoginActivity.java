@@ -34,7 +34,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final int RC_SIGN_IN = 123;
     private EditText emailBox, passwordBox;
     private TextView changePass;
     private Button loginBtn, createAccountBtn;
@@ -127,9 +126,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
-
-
 
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
 

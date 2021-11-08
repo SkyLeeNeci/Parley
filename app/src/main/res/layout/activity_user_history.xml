@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    tools:context=".DashboardActivity">
+    tools:context=".UserHistory">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,42 +40,10 @@
                 android:gravity="center_horizontal"
                 android:text="Enter secred code and share to start conferense." />
 
-            <EditText
-                android:id="@+id/secreatCodeBox"
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/text_box"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="Enter secret code here"
-                android:inputType="textPersonName" />
+                android:layout_height="match_parent" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/connectBtn"
-                    android:layout_width="125dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_style"
-                    android:text="Join"
-                    app:icon="@drawable/link" />
-
-                <Button
-                    android:id="@+id/shareLinkBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_style"
-                    android:text="Share"
-                    app:icon="@drawable/share" />
-            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -84,7 +52,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="727dp"
         android:layout_marginBottom="4dp"
         android:background="#FDE3DB"
         android:visibility="visible"
@@ -96,7 +63,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
