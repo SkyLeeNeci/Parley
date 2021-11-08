@@ -1,6 +1,5 @@
 package karpenko.test.parley;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,18 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText userName,userEmail, userPassword;
-    Button createAccountBtn, logInBtn;
+    private EditText userName,userEmail, userPassword;
+    private Button createAccountBtn, logInBtn;
 
-    FirebaseAuth auth;
-    FirebaseFirestore firebaseFirestore;
+    private FirebaseAuth auth;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

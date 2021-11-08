@@ -31,14 +31,14 @@ import java.util.Map;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    EditText secretCode;
-    Button connectBtn, shareBtn;
-    BottomNavigationItemView home,settings,history,logOut;
-    FirebaseFirestore firestore;
-    FirebaseAuth auth;
-    String userID , roomCode;
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date date = new Date();
+    private EditText secretCode;
+    private Button connectBtn, shareBtn;
+    private BottomNavigationItemView home,settings,history,logOut;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth auth;
+    private String userID , roomCode;
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    private Date date = new Date();
 
 
     @Override
@@ -79,6 +79,7 @@ public class DashboardActivity extends AppCompatActivity {
             DocumentReference documentReference = firestore.collection("userVisitedRoom").document();
             Map<String,Object> userHistory = new HashMap<>();
             userHistory.put("userID", userID);
+            userHistory.put("roomName", "Default Name");
             userHistory.put("roomCode", roomCode);
             userHistory.put("date", formatter.format(date));
             documentReference.set(userHistory).addOnSuccessListener(unused -> Toast.makeText(DashboardActivity.this, "Code saved", Toast.LENGTH_SHORT).show());

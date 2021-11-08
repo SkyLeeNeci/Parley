@@ -42,7 +42,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:padding="3dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
