@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Parley</string>
+    <string name="facebook_app_id">409595807302543</string>
+    <string name="fb_login_protocol_scheme">fb409595807302543</string>
+
 </resources>
