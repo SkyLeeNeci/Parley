@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "141783523039",
+    "firebase_url": "https://parley-a9869-default-rtdb.firebaseio.com",
+    "project_id": "parley-a9869",
+    "storage_bucket": "parley-a9869.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141783523039:android:f16a147b585dd60f7e536a",
+        "android_client_info": {
+          "package_name": "karpenko.test.parley"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141783523039-am2mag6kog1t5o7u5gmjukakvei202jl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "karpenko.test.parley",
+            "certificate_hash": "dbc3407fb9a52101f6646699bc40244aa1ffef1d"
+          }
+        },
+        {
+          "client_id": "141783523039-iersgh9r01kraj1qajnl063ji01essvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB--PHikBn8BzTVhBNaNBJJntMQOIEOYnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141783523039-iersgh9r01kraj1qajnl063ji01essvq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

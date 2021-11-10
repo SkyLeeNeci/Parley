@@ -3,9 +3,7 @@ package karpenko.test.parley;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.inputmethod.InputConnectionCompat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +21,7 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -30,19 +29,17 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthProvider;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+
+import java.util.Arrays;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private CallbackManager callbackManager;
     private LoginButton facebookSignIn;
-    private AccessTokenTracker accessTokenTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,27 +72,11 @@ public class LoginActivity extends AppCompatActivity {
         facebookSignIn = findViewById(R.id.signInWithFacebook);
         callbackManager = CallbackManager.Factory.create();
 
-        facebookSignIn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                handleFacebookToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
 
 
         rememberOrNot();
 
+        facebookSignIn.setOnClickListener(v -> authWithFacebook());
 
         loginBtn.setOnClickListener(v -> authWithMailAndPass());
 
@@ -127,19 +107,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleFacebookToken(AccessToken accessToken) {
-        Toast.makeText(LoginActivity.this, "Get Token", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(LoginActivity.this, "Get Token", Toast.LENGTH_SHORT).show();
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
-        auth.signInWithCredential(credential).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                }else{
-                    Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
+        auth.signInWithCredential(credential).addOnCompleteListener(LoginActivity.this, task -> {
+            if(task.isSuccessful()){
+                //Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                updateUI(user);
+            }else{
+                Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void updateUI(FirebaseUser user) {
+        Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -180,6 +169,26 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void authWithFacebook(){
+        LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                handleFacebookToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
+    }
 
     private void authWithMailAndPass(){
         String email, password;
@@ -206,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
         if(checkBox.equals("true")){
             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
         }else if(checkBox.equals("false")){
-            Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -237,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
         if(checkBox.equals("true") && user!=null){
             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
         }else if(checkBox.equals("false")){
-            Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
         }
     }
 }
