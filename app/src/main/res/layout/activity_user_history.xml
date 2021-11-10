@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:gravity="center_horizontal"
-                android:text="Enter secred code and share to start conferense." />
+                android:text="There are rooms you are visited. Tap ones to check ditales" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
