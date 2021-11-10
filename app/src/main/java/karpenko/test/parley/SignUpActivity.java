@@ -37,39 +37,40 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-        createAccountBtn.setOnClickListener(v -> {
-            String email, name , password;
-            name = userName.getText().toString();
-            email = userEmail.getText().toString();
-            password = userPassword.getText().toString();
+        createAccountBtn.setOnClickListener(v -> createAccountWithEmailAndPassword());
 
-            User user = new User();
+    }
 
-            user.setName(name);
-            user.setEmail(email);
-            user.setPassword(password);
+    private void createAccountWithEmailAndPassword(){
+        String email, name , password;
+        name = userName.getText().toString();
+        email = userEmail.getText().toString();
+        password = userPassword.getText().toString();
 
-            auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
-                    auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task1 -> {
-                        if(task1.isSuccessful()){
-                            Toast.makeText(SignUpActivity.this, "Check email and verify account", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(SignUpActivity.this, task1.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    firebaseFirestore.collection("users")
-                            .document()
-                            .set(user).addOnSuccessListener(unused ->
-                            startActivity(new Intent(SignUpActivity.this,LoginActivity.class)));
-                    Toast.makeText(SignUpActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
+        User user = new User();
 
-            });
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task1 -> {
+                    if(task1.isSuccessful()){
+                        Toast.makeText(SignUpActivity.this, "Check email and verify account", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(SignUpActivity.this, task1.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                firebaseFirestore.collection("users")
+                        .document()
+                        .set(user).addOnSuccessListener(unused ->
+                        startActivity(new Intent(SignUpActivity.this,LoginActivity.class)));
+                Toast.makeText(SignUpActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
 
         });
-
     }
 }
