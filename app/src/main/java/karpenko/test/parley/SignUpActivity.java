@@ -35,11 +35,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         logInBtn.setOnClickListener(v -> startActivity( new Intent(SignUpActivity.this,LoginActivity.class)));
 
-
-
         createAccountBtn.setOnClickListener(v -> createAccountWithEmailAndPassword());
 
     }
+
 
     private void createAccountWithEmailAndPassword(){
         String email, name , password;

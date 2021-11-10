@@ -50,6 +50,61 @@ public class DashboardActivity extends AppCompatActivity {
         firestore = FirebaseFirestore.getInstance();
         auth= FirebaseAuth.getInstance();
 
+        jitsiConferenceOptions();
+
+        connectBtn.setOnClickListener(v -> connectUserToRoomAndSaveRoomId());
+
+        settings.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this,SettingsActivity.class)));
+
+        history.setOnClickListener(v -> Toast.makeText(DashboardActivity.this, "The history of the rooms is not yet available.", Toast.LENGTH_SHORT).show());
+
+        logOut.setOnClickListener(v -> logOutUser());
+
+        shareBtn.setOnClickListener(v -> shareSecretCode());
+    }
+
+    private void logOutUser(){
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("remember", "false");
+        editor.apply();
+        startActivity(new Intent(DashboardActivity.this,LoginActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        finishAffinity();
+    }
+
+    private void shareSecretCode(){
+        String code;
+        code = secretCode.getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "Hey! Join to my video chat by this code : " + code + " . Enter it in app : https://play.google.com/ ");
+        startActivity(Intent.createChooser(intent,"Share to your friends"));
+    }
+
+    private void connectUserToRoomAndSaveRoomId(){
+
+        JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder().setRoom(secretCode.getText().toString())
+                .setWelcomePageEnabled(false).build();
+
+        JitsiMeetActivity.launch(DashboardActivity.this,options);
+
+        userID = auth.getCurrentUser().getUid();
+        roomCode = secretCode.getText().toString();
+
+        DocumentReference documentReference = firestore.collection("userVisitedRoom").document();
+        Map<String,Object> userHistory = new HashMap<>();
+        userHistory.put("userID", userID);
+        userHistory.put("roomName", "Default Name");
+        userHistory.put("roomCode", roomCode);
+        userHistory.put("date", formatter.format(date));
+        documentReference.set(userHistory).addOnSuccessListener(unused -> Toast.makeText(DashboardActivity.this, "Code saved", Toast.LENGTH_SHORT).show());
+
+    }
+
+    private void jitsiConferenceOptions(){
+
         URL url;
         try {
             url = new URL("https://meet.jit.si");
@@ -57,52 +112,9 @@ public class DashboardActivity extends AppCompatActivity {
             JitsiMeetConferenceOptions jitsiMeetConferenceOptions = new JitsiMeetConferenceOptions.Builder()
                     .setServerURL(url).setWelcomePageEnabled(false).setAudioMuted(true).setVideoMuted(true).build();
             JitsiMeet.setDefaultConferenceOptions(jitsiMeetConferenceOptions);
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
-        connectBtn.setOnClickListener(v ->{
-            JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder().setRoom(secretCode.getText().toString())
-                    .setWelcomePageEnabled(false).build();
-
-            JitsiMeetActivity.launch(DashboardActivity.this,options);
-
-            userID = auth.getCurrentUser().getUid();
-            roomCode = secretCode.getText().toString();
-
-            DocumentReference documentReference = firestore.collection("userVisitedRoom").document();
-            Map<String,Object> userHistory = new HashMap<>();
-            userHistory.put("userID", userID);
-            userHistory.put("roomName", "Default Name");
-            userHistory.put("roomCode", roomCode);
-            userHistory.put("date", formatter.format(date));
-            documentReference.set(userHistory).addOnSuccessListener(unused -> Toast.makeText(DashboardActivity.this, "Code saved", Toast.LENGTH_SHORT).show());
-        });
-
-        settings.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this,SettingsActivity.class)));
-
-        history.setOnClickListener(v -> Toast.makeText(DashboardActivity.this, "The history of the rooms is not yet available.", Toast.LENGTH_SHORT).show());
-
-        logOut.setOnClickListener(v -> {
-
-            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("remember", "false");
-            editor.apply();
-            startActivity(new Intent(DashboardActivity.this,LoginActivity.class));
-            FirebaseAuth.getInstance().signOut();
-            finishAffinity();
-        });
-
-        shareBtn.setOnClickListener(v ->{
-
-            String code;
-            code = secretCode.getText().toString();
-
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, "Hey! Join to my video chat by this code : " + code + " . Enter it in app : https://play.google.com/ ");
-            startActivity(Intent.createChooser(intent,"Share to your friends"));
-        });
     }
 }
