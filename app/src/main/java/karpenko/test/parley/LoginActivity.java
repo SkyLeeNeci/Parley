@@ -3,6 +3,7 @@ package karpenko.test.parley;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -73,7 +74,24 @@ public class LoginActivity extends AppCompatActivity {
 
         rememberOrNot();
 
-        facebookSignIn.setOnClickListener(v -> authWithFacebook());
+        facebookSignIn.setOnClickListener(v -> {
+            FirebaseUser   user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user != null){
+                authWithFacebook();
+            }else {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(LoginActivity.this);
+                dialog.setTitle("Attention");
+                dialog.setMessage("Due to the update of the security rules," +
+                        " authorization through the Facebook " +
+                        "service is available only with the installed Facebook application. " +
+                        "Please log in to the Facebook application.");
+                dialog.setPositiveButton("Ok", (dialog1, which) ->  authWithFacebook());
+                dialog.setNegativeButton("Close", (dialog12, which) -> dialog12.dismiss());
+                AlertDialog alertDialog = dialog.create();
+                alertDialog.show();
+            }
+
+        });
 
         loginBtn.setOnClickListener(v -> authWithMailAndPass());
 
