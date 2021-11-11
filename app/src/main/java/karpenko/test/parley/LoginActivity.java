@@ -6,6 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -76,19 +77,22 @@ public class LoginActivity extends AppCompatActivity {
 
         loginBtn.setOnClickListener(v -> authWithMailAndPass());
 
-        createAccountBtn.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignUpActivity.class)));
+        createAccountBtn.setOnClickListener(v ->{
+            Bundle b =  ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class),b);
 
-        changePass.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, ChangePassByEmail.class)));
+        }) ;
+
+        changePass.setOnClickListener(v ->{
+            Bundle b =  ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivity(new Intent(LoginActivity.this, ChangePassByEmail.class),b);
+        });
 
         rememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(buttonView.isChecked()){
-
                 rememberUser();
-
             }else if(!buttonView.isChecked()){
-
                 forgotUser();
-
             }
         });
 
@@ -96,9 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestIdToken("141783523039-iersgh9r01kraj1qajnl063ji01essvq.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
-        // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(LoginActivity.this, gso);
-        // Configure Google Sign In
         googleSignIn.setOnClickListener(v -> resultLauncher.launch(new Intent(mGoogleSignInClient.getSignInIntent())));
     }
 
