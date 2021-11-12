@@ -1,6 +1,7 @@
 package karpenko.test.parley;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.jitsi.meet.sdk.JitsiMeet;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -27,10 +29,10 @@ public class DashboardActivity extends AppCompatActivity {
 
     private EditText secretCode;
     private Button connectBtn, shareBtn;
-    private BottomNavigationItemView home,settings,history,logOut;
+    private BottomNavigationItemView home, settings, history, logOut;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
-    private String userID , roomCode;
+    private String userID, roomCode;
     private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private Date date = new Date();
 
@@ -48,53 +50,53 @@ public class DashboardActivity extends AppCompatActivity {
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
         firestore = FirebaseFirestore.getInstance();
-        auth= FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         jitsiConferenceOptions();
 
         connectBtn.setOnClickListener(v -> connectUserToRoomAndSaveRoomId());
 
-        settings.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this,SettingsActivity.class)));
+        settings.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
 
-        history.setOnClickListener(v -> Toast.makeText(DashboardActivity.this, "The history of the rooms is not yet available.", Toast.LENGTH_SHORT).show());
+        history.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, UserHistory.class)));
 
         logOut.setOnClickListener(v -> logOutUser());
 
         shareBtn.setOnClickListener(v -> shareSecretCode());
     }
 
-    private void logOutUser(){
+    private void logOutUser() {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("remember", "false");
         editor.apply();
-        startActivity(new Intent(DashboardActivity.this,LoginActivity.class));
+        startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
         FirebaseAuth.getInstance().signOut();
         finishAffinity();
     }
 
-    private void shareSecretCode(){
+    private void shareSecretCode() {
         String code;
         code = secretCode.getText().toString();
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, "Hey! Join to my video chat by this code : " + code + " . Enter it in app : https://play.google.com/ ");
-        startActivity(Intent.createChooser(intent,"Share to your friends"));
+        startActivity(Intent.createChooser(intent, "Share to your friends"));
     }
 
-    private void connectUserToRoomAndSaveRoomId(){
+    private void connectUserToRoomAndSaveRoomId() {
 
         JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder().setRoom(secretCode.getText().toString())
                 .setWelcomePageEnabled(false).build();
 
-        JitsiMeetActivity.launch(DashboardActivity.this,options);
+        JitsiMeetActivity.launch(DashboardActivity.this, options);
 
         userID = auth.getCurrentUser().getUid();
         roomCode = secretCode.getText().toString();
 
-        DocumentReference documentReference = firestore.collection("userVisitedRoom").document();
-        Map<String,Object> userHistory = new HashMap<>();
+        DocumentReference documentReference = firestore.collection("users").document(userID).collection("Rooms").document();
+        Map<String, Object> userHistory = new HashMap<>();
         userHistory.put("userID", userID);
         userHistory.put("roomName", "Default Name");
         userHistory.put("roomCode", roomCode);
@@ -103,7 +105,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
-    private void jitsiConferenceOptions(){
+    private void jitsiConferenceOptions() {
 
         URL url;
         try {

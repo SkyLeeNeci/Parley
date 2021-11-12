@@ -1,11 +1,13 @@
 package karpenko.test.parley;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,7 +28,7 @@ public class ChangePassActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        changePassBtn.setOnClickListener(v ->{
+        changePassBtn.setOnClickListener(v -> {
 
             String newPass;
             newPass = passwordNew.getText().toString();
@@ -34,8 +36,8 @@ public class ChangePassActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(ChangePassActivity.this, "Password updated!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(ChangePassActivity.this,LoginActivity.class));
-                        }else {
+                            startActivity(new Intent(ChangePassActivity.this, LoginActivity.class));
+                        } else {
                             Toast.makeText(ChangePassActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
