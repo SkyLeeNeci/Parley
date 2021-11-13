@@ -29,7 +29,7 @@ public class UserHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_history);
 
-        history = findViewById(R.id.userHistoryInfo);
+
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 

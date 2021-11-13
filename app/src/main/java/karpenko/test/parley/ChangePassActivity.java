@@ -13,10 +13,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ChangePassActivity extends AppCompatActivity {
 
-    EditText passwordNew;
-    Button changePassBtn;
-    FirebaseAuth auth;
-    FirebaseUser user;
+    private EditText passwordNew;
+    private Button changePassBtn;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

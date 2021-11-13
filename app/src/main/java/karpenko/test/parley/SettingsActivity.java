@@ -17,10 +17,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class SettingsActivity extends AppCompatActivity {
 
 
-    TextView passChange, deleteAcc;
-    BottomNavigationItemView home,settings,history,logOut;
-    FirebaseAuth auth;
-    FirebaseUser user;
+    private TextView passChange, deleteAcc;
+    private BottomNavigationItemView home,settings,history,logOut;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -40,11 +40,14 @@
                 android:gravity="center_horizontal"
                 android:text="There are rooms you are visited. Tap ones to check ditales" />
 
-            <TextView
-                android:id="@+id/userHistoryInfo"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_user_history"
+                android:layout_margin="8dp"
+                android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

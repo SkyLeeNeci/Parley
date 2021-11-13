@@ -95,7 +95,7 @@ public class DashboardActivity extends AppCompatActivity {
         userID = auth.getCurrentUser().getUid();
         roomCode = secretCode.getText().toString();
 
-        DocumentReference documentReference = firestore.collection("users").document(userID).collection("Rooms").document();
+        DocumentReference documentReference = firestore.collection("userVisitedRoom").document();
         Map<String, Object> userHistory = new HashMap<>();
         userHistory.put("userID", userID);
         userHistory.put("roomName", "Default Name");
