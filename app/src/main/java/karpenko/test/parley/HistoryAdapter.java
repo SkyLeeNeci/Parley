@@ -10,23 +10,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.auth.User;
+
 import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
     Context context;
-    ArrayList<UserHistory> userHistoryArrayList;
+    ArrayList<History> HistoryArrayList;
 
-    public HistoryAdapter(Context context, ArrayList<UserHistory> userHistoryArrayList) {
+    public HistoryAdapter(Context context, ArrayList<History> HistoryArrayList) {
         this.context = context;
-        this.userHistoryArrayList = userHistoryArrayList;
+        this.HistoryArrayList = HistoryArrayList;
     }
 
     @NonNull
     @Override
     public HistoryAdapter.HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.user_history_single_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.user_history_single_item, parent, false);
 
         return new HistoryViewHolder(view);
     }
@@ -34,21 +36,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(@NonNull HistoryAdapter.HistoryViewHolder holder, int position) {
 
-        UserHistory userHistory = userHistoryArrayList.get(position);
+        History history = HistoryArrayList.get(position);
 
-        holder.roomName.setText(userHistory.history.getText());
-        holder.roomName.setText(userHistory.history.getText());
-        holder.roomName.setText(userHistory.history.getText());
+        holder.roomName.setText(history.roomName);
+        holder.roomCode.setText(history.roomCode);
+        holder.roomDate.setText(history.roomDate);
+
     }
 
     @Override
     public int getItemCount() {
-        return userHistoryArrayList.size();
+        return HistoryArrayList.size();
     }
 
-    public static class HistoryViewHolder extends RecyclerView.ViewHolder{
+    public static class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView roomName,roomCode,roomDate;
+        TextView roomName, roomCode, roomDate;
 
 
         public HistoryViewHolder(@NonNull View itemView) {
