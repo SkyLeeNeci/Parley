@@ -62,23 +62,6 @@ public class UserHistory extends AppCompatActivity {
 
         EventChangeListener();
 
-         /*db.collection("userVisitedRoom").whereEqualTo("userID", user.getUid())
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        String date = document.get("date", String.class);
-                                        String name = document.get("roomCode", String.class);
-                                        history.setText(name + " " + date);
-                                    }
-                                } else {
-                                    Log.w(TAG, "Error getting documents.", task.getException());
-                                }
-                            }
-                        });*/
-
     }
 
     private void EventChangeListener() {
