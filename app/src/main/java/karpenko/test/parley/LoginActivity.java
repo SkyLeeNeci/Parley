@@ -39,6 +39,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -96,14 +98,15 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(v -> authWithMailAndPass());
 
         createAccountBtn.setOnClickListener(v ->{
-            Bundle b =  ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-            startActivity(new Intent(LoginActivity.this, SignUpActivity.class),b);
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+            Bungee.slideLeft(LoginActivity.this);
+
 
         }) ;
 
         changePass.setOnClickListener(v ->{
-            Bundle b =  ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
-            startActivity(new Intent(LoginActivity.this, ChangePassByEmail.class),b);
+            startActivity(new Intent(LoginActivity.this, ChangePassByEmail.class));
+            Bungee.slideLeft(LoginActivity.this);
         });
 
         rememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {

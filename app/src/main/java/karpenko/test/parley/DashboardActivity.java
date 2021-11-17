@@ -25,11 +25,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class DashboardActivity extends AppCompatActivity {
 
     private EditText secretCode;
     private Button connectBtn, shareBtn;
-    private BottomNavigationItemView home, settings, history, logOut;
+    private BottomNavigationItemView settings, history, logOut;
     private FirebaseFirestore firestore;
     private FirebaseAuth auth;
     private String userID, roomCode;
@@ -45,7 +47,6 @@ public class DashboardActivity extends AppCompatActivity {
         secretCode = findViewById(R.id.secreatCodeBox);
         connectBtn = findViewById(R.id.connectBtn);
         shareBtn = findViewById(R.id.shareLinkBtn);
-        home = findViewById(R.id.homeBtn);
         settings = findViewById(R.id.settingsBtn);
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
@@ -56,9 +57,15 @@ public class DashboardActivity extends AppCompatActivity {
 
         connectBtn.setOnClickListener(v -> connectUserToRoomAndSaveRoomId());
 
-        settings.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
+        settings.setOnClickListener(v ->{
+            startActivity(new Intent(DashboardActivity.this, SettingsActivity.class));
+            Bungee.slideLeft(DashboardActivity.this);
+        });
 
-        history.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, UserHistory.class)));
+        history.setOnClickListener(v -> {
+            startActivity(new Intent(DashboardActivity.this, UserHistory.class));
+            Bungee.slideLeft(DashboardActivity.this);
+        });
 
         logOut.setOnClickListener(v -> logOutUser());
 
@@ -71,6 +78,7 @@ public class DashboardActivity extends AppCompatActivity {
         editor.putString("remember", "false");
         editor.apply();
         startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+        Bungee.slideRight(DashboardActivity.this);
         FirebaseAuth.getInstance().signOut();
         finishAffinity();
     }
@@ -119,4 +127,10 @@ public class DashboardActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    /*@Override
+    public void onBackPressed() {
+        logOutUser();
+    }*/
+
 }

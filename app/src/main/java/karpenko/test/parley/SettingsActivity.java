@@ -14,6 +14,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class SettingsActivity extends AppCompatActivity {
 
 
@@ -37,21 +39,22 @@ public class SettingsActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        home.setOnClickListener(v -> startActivity(new Intent(SettingsActivity.this,DashboardActivity.class)));
+        home.setOnClickListener(v ->{
+            startActivity(new Intent(SettingsActivity.this,DashboardActivity.class));
+            Bungee.slideRight(SettingsActivity.this);
+        } );
 
-        logOut.setOnClickListener(v ->{
-            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("remember", "false");
-            editor.apply();
-            startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
-            FirebaseAuth.getInstance().signOut();
-            finishAffinity();
+        logOut.setOnClickListener(v -> logOutUser());
+
+        history.setOnClickListener(v -> {
+            startActivity(new Intent(SettingsActivity.this,UserHistory.class));
+            Bungee.slideRight(SettingsActivity.this);
         });
 
-        history.setOnClickListener(v -> Toast.makeText(SettingsActivity.this, "The history of the rooms is not yet available.", Toast.LENGTH_SHORT).show());
-
-        passChange.setOnClickListener(v -> startActivity(new Intent(SettingsActivity.this,ChangePassActivity.class)));
+        passChange.setOnClickListener(v -> {
+            startActivity(new Intent(SettingsActivity.this,ChangePassActivity.class));
+            Bungee.slideLeft(SettingsActivity.this);
+        });
 
         deleteAcc.setOnClickListener(v ->{
             AlertDialog.Builder dialog = new AlertDialog.Builder(SettingsActivity.this);
@@ -61,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(SettingsActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SettingsActivity.this,LoginActivity.class));
+                    Bungee.slideRight(SettingsActivity.this);
                     finishAffinity();
                 }else {
                     Toast.makeText(SettingsActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -72,4 +76,16 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
     }
+
+    private void logOutUser() {
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("remember", "false");
+        editor.apply();
+        startActivity(new Intent(SettingsActivity.this, LoginActivity.class));
+        Bungee.slideRight(SettingsActivity.this);
+        FirebaseAuth.getInstance().signOut();
+        finishAffinity();
+    }
+
 }

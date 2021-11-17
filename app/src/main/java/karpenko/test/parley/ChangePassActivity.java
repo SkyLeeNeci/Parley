@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 public class ChangePassActivity extends AppCompatActivity {
 
     private EditText passwordNew;
@@ -37,6 +39,7 @@ public class ChangePassActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(ChangePassActivity.this, "Password updated!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ChangePassActivity.this, LoginActivity.class));
+                            Bungee.slideRight(ChangePassActivity.this);
                         } else {
                             Toast.makeText(ChangePassActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -44,4 +47,11 @@ public class ChangePassActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ChangePassActivity.this,SettingsActivity.class));
+        Bungee.slideRight(ChangePassActivity.this);
+    }
+
 }

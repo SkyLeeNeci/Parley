@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import spencerstudios.com.bungeelib.Bungee;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -33,7 +35,10 @@ public class SignUpActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        logInBtn.setOnClickListener(v -> startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
+        logInBtn.setOnClickListener(v -> {
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            Bungee.slideRight(SignUpActivity.this);
+        });
 
         createAccountBtn.setOnClickListener(v -> createAccountWithEmailAndPassword());
 
@@ -63,13 +68,23 @@ public class SignUpActivity extends AppCompatActivity {
                 });
                 firebaseFirestore.collection("users")
                         .document()
-                        .set(user).addOnSuccessListener(unused ->
-                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
+                        .set(user).addOnSuccessListener(unused -> {
+                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                    Bungee.slideRight(SignUpActivity.this);
+                });
                 Toast.makeText(SignUpActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+        Bungee.slideRight(SignUpActivity.this);
+        finish();
     }
 }

@@ -1,6 +1,5 @@
 package karpenko.test.parley;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,9 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
+import spencerstudios.com.bungeelib.Bungee;
 
 public class ChangePassByEmail extends AppCompatActivity {
 
@@ -39,11 +38,19 @@ public class ChangePassByEmail extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(ChangePassByEmail.this, "Check email!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ChangePassByEmail.this,LoginActivity.class));
+                            Bungee.slideRight(ChangePassByEmail.this);
                             finish();
                         }
                     });
 
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ChangePassByEmail.this,LoginActivity.class));
+        Bungee.slideRight(ChangePassByEmail.this);
+        finish();
     }
 }
