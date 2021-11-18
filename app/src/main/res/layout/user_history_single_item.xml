@@ -10,13 +10,13 @@
     app:cardElevation="8dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="3dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:orientation="horizontal">
@@ -93,7 +93,7 @@
                 android:id="@+id/tvRoomVisited"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Default  "
+                android:text="Default"
                 android:textSize="17sp"
                 android:textStyle="bold">
 
