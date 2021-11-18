@@ -2,15 +2,15 @@ package karpenko.test.parley;
 
 public class History {
 
-    String roomCode, roomName,roomDate;
+    String roomCode, roomName,date;
 
 
     public History(){};
 
-    public History(String roomCode, String roomName, String roomDate) {
+    public History(String roomCode, String roomName, String date) {
         this.roomCode = roomCode;
         this.roomName = roomName;
-        this.roomDate = roomDate;
+        this.date = date;
     }
 
     public String getRoomCode() {
@@ -29,11 +29,11 @@ public class History {
         this.roomName = roomName;
     }
 
-    public String getRoomDate() {
-        return roomDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setRoomDate(String roomDate) {
-        this.roomDate = roomDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

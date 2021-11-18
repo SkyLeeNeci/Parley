@@ -55,8 +55,7 @@ public class UserHistory extends AppCompatActivity {
         histories = new ArrayList<History>();
         historyAdapter = new HistoryAdapter(UserHistory.this, histories);
         recyclerView.setAdapter(historyAdapter);
-
-        EventChangeListener();
+        
 
         settings.setOnClickListener(v -> {
             startActivity(new Intent(UserHistory.this, SettingsActivity.class));
@@ -69,6 +68,8 @@ public class UserHistory extends AppCompatActivity {
         });
 
         logOut.setOnClickListener(v -> logOutUser());
+
+        EventChangeListener();
 
     }
 

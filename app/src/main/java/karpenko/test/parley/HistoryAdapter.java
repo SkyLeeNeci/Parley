@@ -1,6 +1,5 @@
 package karpenko.test.parley;
 
-import android.app.LauncherActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
         holder.roomName.setText(history.roomName);
         holder.roomCode.setText(history.roomCode);
-        holder.roomDate.setText(history.roomDate);
+        holder.roomDate.setText(String.valueOf(history.date));
 
     }
 
