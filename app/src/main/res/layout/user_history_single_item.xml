@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:textAlignment="center"
     app:cardBackgroundColor="#E3E3E3"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
@@ -103,5 +104,14 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOptions"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:text="&#8942;"
+        android:textSize="20sp" />
 
 </androidx.cardview.widget.CardView>

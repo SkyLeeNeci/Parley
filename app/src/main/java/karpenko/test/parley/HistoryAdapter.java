@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,20 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.roomCode.setText(history.roomCode);
         holder.roomDate.setText(String.valueOf(history.date));
 
+        holder.options.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(context,holder.options);
+            popupMenu.inflate(R.menu.history_recyclerview_menu);
+          /*  popupMenu.setOnMenuItemClickListener(item -> {
+
+                switch (item.getItemId()){
+                    case R.id.menu_edit:
+                        Intent intent = new Intent(context,DashboardActivity.class);
+
+                        break;
+                }
+
+            });*/
+        });
     }
 
     @Override
@@ -48,7 +63,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView roomName, roomCode, roomDate;
+        TextView roomName, roomCode, roomDate, options;
 
 
         public HistoryViewHolder(@NonNull View itemView) {
@@ -57,6 +72,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             roomName = itemView.findViewById(R.id.tvRoomName);
             roomCode = itemView.findViewById(R.id.tvRoomCode);
             roomDate = itemView.findViewById(R.id.tvRoomVisited);
+            options = itemView.findViewById(R.id.tvOptions);
 
         }
     }
