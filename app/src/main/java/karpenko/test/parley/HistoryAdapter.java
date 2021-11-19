@@ -1,16 +1,27 @@
 package karpenko.test.parley;
 
 import android.content.Context;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
@@ -41,19 +52,75 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.roomDate.setText(String.valueOf(history.date));
 
         holder.options.setOnClickListener(v -> {
-            PopupMenu popupMenu = new PopupMenu(context,holder.options);
+            PopupMenu popupMenu = new PopupMenu(context, holder.options);
             popupMenu.inflate(R.menu.history_recyclerview_menu);
-          /*  popupMenu.setOnMenuItemClickListener(item -> {
 
-                switch (item.getItemId()){
-                    case R.id.menu_edit:
-                        Intent intent = new Intent(context,DashboardActivity.class);
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == R.id.menu_remove) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                    dialog.setTitle("Are you sure?");
+                    dialog.setMessage(" Remove information about room from the system? ");
+                    dialog.setPositiveButton("Yes", (dialog13, which) -> FirebaseFirestore.getInstance()
+                            .collection("userVisitedRoom")
+                            .whereEqualTo("roomCode", history.roomCode).get()
+                            .addOnSuccessListener(queryDocumentSnapshots -> {
+                                WriteBatch b = FirebaseFirestore.getInstance().batch();
+                                List<DocumentSnapshot> s = queryDocumentSnapshots.getDocuments();
+                                for (DocumentSnapshot snapshot : s) {
+                                    b.delete(snapshot.getReference());
+                                }
+                                b.commit().addOnSuccessListener(unused -> Toast.makeText(context, "Removed", Toast.LENGTH_SHORT).show());
+                            }));
+                    dialog.setNegativeButton("Close", (dialog12, which) -> dialog12.dismiss());
+                    AlertDialog alertDialog = dialog.create();
+                    alertDialog.show();
+                } else if (item.getItemId() == R.id.menu_edit) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+                    dialog.setTitle("Set new room name : ");
+                    EditText editText = new EditText(context);
+                    editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                    dialog.setView(editText);
 
-                        break;
+                    dialog.setPositiveButton("Ok", (dialog1, which) -> {
+                        String newRoomName = editText.getText().toString();
+                        String roomCode = history.roomCode;
+
+                        UpdateData(roomCode, newRoomName);
+                    });
+                    dialog.setNegativeButton("Close", (dialog12, which) -> dialog12.dismiss());
+                    AlertDialog alertDialog = dialog.create();
+                    alertDialog.show();
+
                 }
+                return true;
 
-            });*/
+            });
+
+            popupMenu.show();
         });
+    }
+
+    private void UpdateData(String roomCode, String newRoomName) {
+
+        Map<String, Object> newName = new HashMap<>();
+        newName.put("roomName", newRoomName);
+
+        FirebaseFirestore.getInstance().collection("userVisitedRoom").whereEqualTo("roomCode", roomCode)
+                .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && !task.getResult().isEmpty()) {
+
+                DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                String documentID = documentSnapshot.getId();
+                FirebaseFirestore.getInstance().collection("userVisitedRoom")
+                        .document(documentID).update(newName)
+                        .addOnSuccessListener(unused -> Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e -> Toast.makeText(context, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show());
+
+            } else {
+                Toast.makeText(context, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
