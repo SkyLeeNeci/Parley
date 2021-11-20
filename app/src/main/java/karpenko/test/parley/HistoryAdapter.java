@@ -18,6 +18,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import org.jitsi.meet.sdk.JitsiMeet;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
+import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +56,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.roomName.setText(history.roomName);
         holder.roomCode.setText(history.roomCode);
         holder.roomDate.setText(String.valueOf(history.date));
+
+        holder.itemView.setOnClickListener(v -> {
+            jitsiConferenceOptions();
+            JitsiMeetConferenceOptions options = new JitsiMeetConferenceOptions.Builder().setRoom(holder.roomCode.getText().toString())
+                    .setWelcomePageEnabled(false).build();
+
+            JitsiMeetActivity.launch(context, options);
+        });
 
         holder.options.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(context, holder.options);
@@ -141,6 +155,21 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             roomDate = itemView.findViewById(R.id.tvRoomVisited);
             options = itemView.findViewById(R.id.tvOptions);
 
+        }
+    }
+
+    private void jitsiConferenceOptions() {
+
+        URL url;
+        try {
+            url = new URL("https://meet.jit.si");
+
+            JitsiMeetConferenceOptions jitsiMeetConferenceOptions = new JitsiMeetConferenceOptions.Builder()
+                    .setServerURL(url).setWelcomePageEnabled(false).setAudioMuted(true).setVideoMuted(true).build();
+            JitsiMeet.setDefaultConferenceOptions(jitsiMeetConferenceOptions);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
     }
 
