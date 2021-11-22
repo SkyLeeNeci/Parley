@@ -53,6 +53,18 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/changeLang"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_margin="10dp"
+                        android:background="#CAC9C9"
+                        android:gravity="center|left"
+                        android:padding="5dp"
+                        android:text="@string/change_language"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
                         android:id="@+id/changePassBasic"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
