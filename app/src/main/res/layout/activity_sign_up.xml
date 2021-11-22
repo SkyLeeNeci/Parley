@@ -30,6 +30,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="25dp"
+                android:contentDescription="@string/logo"
                 app:srcCompat="@drawable/discussion" />
 
             <TextView
@@ -39,7 +40,7 @@
                 android:layout_marginBottom="20dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Parley"
+                android:text="@string/parley"
                 android:textColor="#3E3D3D"
                 android:textSize="34sp" />
 
@@ -49,13 +50,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/user"
+                android:drawableStart="@drawable/user"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Enter Full Name "
+                android:hint="@string/enter_full_name"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/userEmailBox"
@@ -63,14 +65,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/gmail"
+                android:drawableStart="@drawable/gmail"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:padding="5dp"
-                android:scrollbarAlwaysDrawHorizontalTrack="false" />
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/passwordBox"
@@ -80,13 +83,14 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/lock"
+                android:drawableStart="@drawable/lock"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:importantForAutofill="no" />
 
             <Button
                 android:id="@+id/createAccBtn"
@@ -95,7 +99,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
                 android:background="@drawable/button_style"
-                android:text="Create Account" />
+                android:text="@string/create_account" />
 
             <Button
                 android:id="@+id/loginBtn"
@@ -104,7 +108,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
                 android:background="@drawable/button_style"
-                android:text="Click here to log in "
+                android:text="@string/click_here_to_log_in"
                 android:textSize="12sp" />
 
         </LinearLayout>

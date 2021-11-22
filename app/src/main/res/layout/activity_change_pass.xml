@@ -30,6 +30,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="25dp"
+                android:contentDescription="@string/logo"
                 app:srcCompat="@drawable/discussion" />
 
             <TextView
@@ -39,7 +40,7 @@
                 android:layout_marginBottom="20dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Parley"
+                android:text="@string/parley"
                 android:textColor="#3E3D3D"
                 android:textSize="34sp" />
 
@@ -49,14 +50,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/changepassword"
+                android:drawableStart="@drawable/changepassword"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="New password "
+                android:hint="@string/new_password"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:padding="5dp"
-                android:scrollbarAlwaysDrawHorizontalTrack="false" />
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:importantForAutofill="no" />
 
             <Button
                 android:id="@+id/changePassBtn"
@@ -65,7 +67,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 android:background="@drawable/button_style"
-                android:text="Change Password" />
+                android:text="@string/change_password" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

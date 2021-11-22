@@ -5,17 +5,17 @@
     <item
         android:id="@+id/homeBtn"
         android:icon="@drawable/home"
-        android:title="Home" />
+        android:title="@string/home" />
     <item
         android:id="@+id/historyBtn"
         android:icon="@drawable/time"
-        android:title="History" />
+        android:title="@string/history" />
     <item
         android:id="@+id/settingsBtn"
         android:icon="@drawable/gear"
-        android:title="Settings" />
+        android:title="@string/settings" />
     <item
         android:id="@+id/logOutBtn"
         android:icon="@drawable/logout"
-        android:title="Log Out" />
+        android:title="@string/log_out" />
 </menu>

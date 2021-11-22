@@ -49,10 +49,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/text_box"
-                android:drawableLeft="@drawable/gmail"
+                android:drawableStart="@drawable/gmail"
                 android:drawablePadding="10dp"
                 android:ems="10"
-                android:hint="Enter email here"
+                android:hint="@string/enter_email_here"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:padding="5dp"
@@ -65,7 +65,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
                 android:background="@drawable/button_style"
-                android:text="Change Password" />
+                android:text="@string/change_password" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

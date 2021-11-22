@@ -2,5 +2,35 @@
     <string name="app_name">Parley</string>
     <string name="facebook_app_id">409595807302543</string>
     <string name="fb_login_protocol_scheme">fb409595807302543</string>
+    <string name="parley">Parley</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="enter_email_here">Enter email here</string>
+    <string name="change_password">Change Password</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="click_here_to_log_in">Click here to log in</string>
+    <string name="logo">LOGO</string>
+    <string name="new_password">New password</string>
+    <string name="activity_dashboard_info">Enter the secret code and share to start the conference.</string>
+    <string name="enter_secret_code_here">Enter secret code here</string>
+    <string name="join">Join</string>
+    <string name="share">Share</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log Out</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="delete_acc">Delete account</string>
+    <string name="change_setting_and_apply">Change setting and apply</string>
+    <string name="activity_user_history_info">Your history of visiting rooms is displayed here. To join, click on the desired room</string>
+    <string name="room_name">Room Name :</string>
+    <string name="room_code">Room Code :</string>
+    <string name="when_visited">When visited :</string>
+
 
 </resources>
