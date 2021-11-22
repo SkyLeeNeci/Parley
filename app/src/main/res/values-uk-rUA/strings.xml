@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Parley</string>
+    <string name="email">Пошта</string>
+    <string name="password">Пароль</string>
+    <string name="remember_me">Запам\'ятати</string>
+    <string name="login">Увійти</string>
+    <string name="create_account">Створити Аккаунт</string>
+    <string name="forgot_password">Забули пароль?</string>
+    <string name="enter_email_here">Введіть пошту тут</string>
+    <string name="change_password">Змінити пароль</string>
+    <string name="enter_full_name">"Введіть ім'я тут "</string>
+    <string name="click_here_to_log_in">Авторизуватись</string>
+    <string name="logo">ЛОГО</string>
+    <string name="new_password">Новий пароль</string>
+    <string name="activity_dashboard_info">Введіть секретний код та поділіться для початку конференції</string>
+    <string name="facebook_app_id">409595807302543</string>
+    <string name="fb_login_protocol_scheme">fb409595807302543</string>
+    <string name="enter_secret_code_here">"Введіть код тут "</string>
+    <string name="join">Приєднатись</string>
+    <string name="share">Поділитись</string>
+    <string name="home">Головна</string>
+    <string name="history">Історія</string>
+    <string name="settings">Налаштування</string>
+    <string name="log_out">Вийти</string>
+    <string name="edit">Налаштувати</string>
+    <string name="remove">Видалити</string>
+    <string name="delete_acc">Видалити аккаунт</string>
+    <string name="change_setting_and_apply">Тут ви можете змінити та затвердити налаштування</string>
+    <string name="activity_user_history_info">Ваша історія відвідувань кімнат відображається тут. Щоб приєднатися, натисніть на потрібну кімнату</string>
+    <string name="room_name">Ім\'я кімнати :</string>
+    <string name="room_code">Код кімнати :</string>
+    <string name="when_visited">Коли відвідано :</string>
+    <string name="change_language">Змінити мову</string>
+</resources>
