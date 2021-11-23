@@ -19,8 +19,8 @@
         tools:visibility="visible">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#D8D8D8"
             android:orientation="vertical"
             tools:visibility="visible">
@@ -51,33 +51,36 @@
                 android:ems="10"
                 android:gravity="center"
                 android:hint="@string/enter_secret_code_here"
-                android:inputType="textPersonName"
-                android:importantForAutofill="no" />
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/connectBtn"
-                    android:layout_width="125dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
                     android:text="@string/join"
-                    app:icon="@drawable/link" />
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/shareLinkBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
-                    android:text="@string/share"
-                    app:icon="@drawable/share" />
+                    android:text="@string/share" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

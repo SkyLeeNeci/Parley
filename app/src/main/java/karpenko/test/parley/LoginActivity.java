@@ -7,7 +7,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -126,11 +125,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleFacebookToken(AccessToken accessToken) {
-        //Toast.makeText(LoginActivity.this, "Get Token", Toast.LENGTH_SHORT).show();
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
         auth.signInWithCredential(credential).addOnCompleteListener(LoginActivity.this, task -> {
             if(task.isSuccessful()){
-                //Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 updateUI(user);
             }else{
@@ -233,8 +230,6 @@ public class LoginActivity extends AppCompatActivity {
         String checkBox =  preferences.getString("remember", "");
         if(checkBox.equals("true")){
             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
-        }else if(checkBox.equals("false")){
-            //Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -243,7 +238,6 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences1.edit();
         editor.putString("remember", "true");
         editor.apply();
-        Toast.makeText(LoginActivity.this, "Remembered!", Toast.LENGTH_SHORT).show();
     }
 
     private void forgotUser(){
@@ -251,7 +245,6 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences1.edit();
         editor.putString("remember", "false");
         editor.apply();
-        Toast.makeText(LoginActivity.this, "Forgot!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -264,8 +257,6 @@ public class LoginActivity extends AppCompatActivity {
         String checkBox =  preferences.getString("remember", "");
         if(checkBox.equals("true") && user!=null){
             startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
-        }else if(checkBox.equals("false")){
-            //Toast.makeText(LoginActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
         }
     }
 }

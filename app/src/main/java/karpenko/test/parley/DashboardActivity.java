@@ -128,9 +128,4 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-    /*@Override
-    public void onBackPressed() {
-        logOutUser();
-    }*/
-
 }

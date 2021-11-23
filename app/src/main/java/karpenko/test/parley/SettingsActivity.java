@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -25,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     private TextView passChange, deleteAcc, langChange;
-    private BottomNavigationItemView home, settings, history, logOut;
+    private BottomNavigationItemView home, history, logOut;
     private FirebaseAuth auth;
     private FirebaseUser user;
 
@@ -39,7 +38,6 @@ public class SettingsActivity extends AppCompatActivity {
         deleteAcc = findViewById(R.id.deleteAccBtn);
         langChange = findViewById(R.id.changeLang);
         home = findViewById(R.id.homeBtn);
-        settings = findViewById(R.id.settingsBtn);
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
         auth = FirebaseAuth.getInstance();
@@ -64,11 +62,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         deleteAcc.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(SettingsActivity.this);
-            dialog.setTitle("Are you sure?");
-            dialog.setMessage("Remove your account from the system?");
+            dialog.setTitle(getString(R.string.are_u_sure));
+            dialog.setMessage(getString(R.string.remove_acc_from_system));
             dialog.setPositiveButton("Yes", (dialog1, which) -> user.delete().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(SettingsActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SettingsActivity.this, LoginActivity.class));
                     Bungee.slideRight(SettingsActivity.this);
                     finishAffinity();
@@ -88,23 +85,20 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void showChangeLanguageDialog() {
-        final String[] listItems = {"English", "Ukrainian"};
+        final String[] listItems = {"English", "Українська"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Chose Language");
-        builder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (which == 0) {
-                    setLocate("en");
-                    recreate();
-                } else if (which == 1) {
-                    setLocate("uk");
-                    recreate();
-                }
-
-                dialog.dismiss();
-
+        builder.setSingleChoiceItems(listItems, -1, (dialog, which) -> {
+            if (which == 0) {
+                setLocate("en");
+                recreate();
+            } else if (which == 1) {
+                setLocate("uk");
+                recreate();
             }
+
+            dialog.dismiss();
+
         });
 
         AlertDialog dialog = builder.create();
