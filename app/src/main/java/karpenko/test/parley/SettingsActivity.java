@@ -25,7 +25,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private TextView passChange, deleteAcc, langChange;
     private BottomNavigationItemView home, history, logOut;
-    private FirebaseAuth auth;
     private FirebaseUser user;
 
     @Override
@@ -40,7 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
         home = findViewById(R.id.homeBtn);
         history = findViewById(R.id.historyBtn);
         logOut = findViewById(R.id.logOutBtn);
-        auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         home.setOnClickListener(v -> {
@@ -64,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
             AlertDialog.Builder dialog = new AlertDialog.Builder(SettingsActivity.this);
             dialog.setTitle(getString(R.string.are_u_sure));
             dialog.setMessage(getString(R.string.remove_acc_from_system));
-            dialog.setPositiveButton("Yes", (dialog1, which) -> user.delete().addOnCompleteListener(task -> {
+            dialog.setPositiveButton(R.string.yes, (dialog1, which) -> user.delete().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     startActivity(new Intent(SettingsActivity.this, LoginActivity.class));
                     Bungee.slideRight(SettingsActivity.this);
@@ -73,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Toast.makeText(SettingsActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }));
-            dialog.setNegativeButton("No", (dialog12, which) -> dialog12.dismiss());
+            dialog.setNegativeButton(R.string.no, (dialog12, which) -> dialog12.dismiss());
             AlertDialog alertDialog = dialog.create();
             alertDialog.show();
         });
@@ -81,13 +79,12 @@ public class SettingsActivity extends AppCompatActivity {
         langChange.setOnClickListener(v -> {
             showChangeLanguageDialog();
         });
-
     }
 
     private void showChangeLanguageDialog() {
         final String[] listItems = {"English", "Українська"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Chose Language");
+        builder.setTitle(R.string.chose_lang);
         builder.setSingleChoiceItems(listItems, -1, (dialog, which) -> {
             if (which == 0) {
                 setLocate("en");
@@ -96,11 +93,9 @@ public class SettingsActivity extends AppCompatActivity {
                 setLocate("uk");
                 recreate();
             }
-
             dialog.dismiss();
 
         });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
@@ -120,7 +115,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void loadLocate() {
-
         SharedPreferences preferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = preferences.getString("My_lang", "");
         setLocate(language);

@@ -28,8 +28,29 @@
     <string name="delete_acc">Видалити аккаунт</string>
     <string name="change_setting_and_apply">Тут ви можете змінити та затвердити налаштування</string>
     <string name="activity_user_history_info">Ваша історія відвідувань кімнат відображається тут. Щоб приєднатися, натисніть на потрібну кімнату</string>
-    <string name="room_name">Ім\'я кімнати :</string>
-    <string name="room_code">Код кімнати :</string>
-    <string name="when_visited">Коли відвідано :</string>
+    <string name="room_name">Ім\'я кімнати:</string>
+    <string name="room_code">Код кімнати:</string>
+    <string name="when_visited">Коли відвідано:</string>
     <string name="change_language">Змінити мову</string>
+    <string name="attention">Увага!</string>
+    <string name="success">Успішно</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="ok">Добре</string>
+    <string name="close">Закрити</string>
+    <string name="are_u_sure">Ви впевнені?</string>
+    <string name="remove_acc_from_system">Видалити ваш аккаунт з системи?</string>
+    <string name="chose_lang">Оберіть мову</string>
+    <string name="check_email">Перевірте пошту!</string>
+    <string name="code_saved">Код запам\'ятовано</string>
+    <string name="remove_info_about_visited_room">Видалити інформацію про кімнату?</string>
+    <string name="set_new_room_name">Введіть нову назву кімнати :</string>
+    <string name="removed">Видалено</string>
+    <string name="facebook_login_info">У зв’язку з оновленням правил безпеки,
+        авторизація через сервіс Facebook доступна лише з встановленим додатком Facebook.
+        Будь ласка, увійдіть до свого аккаунта з програми Facebook.</string>
+    <string name="updated">Оновлено</string>
+    <string name="verify_email">Перевірте пошту та активуйте аккаунт</string>
+    <string name="search">Пошук…</string>
+
 </resources>

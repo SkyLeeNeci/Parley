@@ -36,7 +36,7 @@ public class ChangePassByEmail extends AppCompatActivity {
             auth.sendPasswordResetEmail(email)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ChangePassByEmail.this, "Check email!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangePassByEmail.this, getString(R.string.check_email), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(ChangePassByEmail.this,LoginActivity.class));
                             Bungee.slideRight(ChangePassByEmail.this);
                             finish();

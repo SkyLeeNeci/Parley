@@ -72,9 +72,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             popupMenu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.menu_remove) {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-                    dialog.setTitle("Are you sure?");
-                    dialog.setMessage(" Remove information about room from the system? ");
-                    dialog.setPositiveButton("Yes", (dialog13, which) -> FirebaseFirestore.getInstance()
+                    dialog.setTitle(R.string.are_u_sure);
+                    dialog.setMessage(R.string.remove_info_about_visited_room);
+                    dialog.setPositiveButton(R.string.yes, (dialog13, which) -> FirebaseFirestore.getInstance()
                             .collection("userVisitedRoom")
                             .whereEqualTo("roomCode", history.roomCode).get()
                             .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -83,25 +83,25 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                                 for (DocumentSnapshot snapshot : s) {
                                     b.delete(snapshot.getReference());
                                 }
-                                b.commit().addOnSuccessListener(unused -> Toast.makeText(context, "Removed", Toast.LENGTH_SHORT).show());
+                                b.commit().addOnSuccessListener(unused -> Toast.makeText(context, R.string.removed, Toast.LENGTH_SHORT).show());
                             }));
-                    dialog.setNegativeButton("Close", (dialog12, which) -> dialog12.dismiss());
+                    dialog.setNegativeButton(R.string.close, (dialog12, which) -> dialog12.dismiss());
                     AlertDialog alertDialog = dialog.create();
                     alertDialog.show();
                 } else if (item.getItemId() == R.id.menu_edit) {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-                    dialog.setTitle("Set new room name : ");
+                    dialog.setTitle(R.string.set_new_room_name);
                     EditText editText = new EditText(context);
                     editText.setInputType(InputType.TYPE_CLASS_TEXT);
                     dialog.setView(editText);
 
-                    dialog.setPositiveButton("Ok", (dialog1, which) -> {
+                    dialog.setPositiveButton(R.string.ok, (dialog1, which) -> {
                         String newRoomName = editText.getText().toString();
                         String roomCode = history.roomCode;
 
                         UpdateData(roomCode, newRoomName);
                     });
-                    dialog.setNegativeButton("Close", (dialog12, which) -> dialog12.dismiss());
+                    dialog.setNegativeButton(R.string.close, (dialog12, which) -> dialog12.dismiss());
                     AlertDialog alertDialog = dialog.create();
                     alertDialog.show();
 
@@ -127,7 +127,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
                 String documentID = documentSnapshot.getId();
                 FirebaseFirestore.getInstance().collection("userVisitedRoom")
                         .document(documentID).update(newName)
-                        .addOnSuccessListener(unused -> Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show())
+                        .addOnSuccessListener(unused -> Toast.makeText(context, R.string.updated, Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Toast.makeText(context, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show());
 
             } else {

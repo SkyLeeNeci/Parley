@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 auth.getCurrentUser().sendEmailVerification().addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
-                        Toast.makeText(SignUpActivity.this, "Check email and verify account", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, R.string.verify_email, Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(SignUpActivity.this, task1.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -72,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     Bungee.slideRight(SignUpActivity.this);
                 });
-                Toast.makeText(SignUpActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(SignUpActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }

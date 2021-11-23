@@ -31,6 +31,26 @@
     <string name="room_code">Room Code :</string>
     <string name="when_visited">When visited :</string>
     <string name="change_language">Change Language</string>
+    <string name="success">Success</string>
+    <string name="attention">Attention!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="close">Close</string>
+    <string name="are_u_sure">Are you sure?</string>
+    <string name="remove_acc_from_system">Remove your account from the system?</string>
+    <string name="chose_lang">Chose Language</string>
+    <string name="check_email">Check email!</string>
+    <string name="code_saved">Code saved</string>
+    <string name="remove_info_about_visited_room">Remove information about room from the system?</string>
+    <string name="set_new_room_name">Set new room name :</string>
+    <string name="removed">Removed</string>
+    <string name="facebook_login_info">Due to the update of the security rules,
+        authorization through the Facebook service is available only with the installed Facebook application.
+        Please log in to the Facebook application.</string>
+    <string name="updated">Updated</string>
+    <string name="verify_email">Check email and verify account</string>
+    <string name="search">Search…</string>
 
 
 </resources>

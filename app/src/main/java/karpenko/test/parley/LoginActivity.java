@@ -40,11 +40,10 @@ import java.util.Arrays;
 
 import spencerstudios.com.bungeelib.Bungee;
 
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailBox, passwordBox;
-    private TextView changePass ;
+    private TextView changePass;
     private Button loginBtn, createAccountBtn;
     private FirebaseAuth auth;
     private CheckBox rememberMe;
@@ -71,47 +70,39 @@ public class LoginActivity extends AppCompatActivity {
         facebookSignIn = findViewById(R.id.signInWithFacebook);
         callbackManager = CallbackManager.Factory.create();
 
-
-
         rememberOrNot();
 
         facebookSignIn.setOnClickListener(v -> {
-            FirebaseUser   user = FirebaseAuth.getInstance().getCurrentUser();
-            if(user != null){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
                 authWithFacebook();
-            }else {
+            } else {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(LoginActivity.this);
-                dialog.setTitle("Attention");
-                dialog.setMessage("Due to the update of the security rules," +
-                        " authorization through the Facebook " +
-                        "service is available only with the installed Facebook application. " +
-                        "Please log in to the Facebook application.");
-                dialog.setPositiveButton("Ok", (dialog1, which) ->  authWithFacebook());
-                dialog.setNegativeButton("Close", (dialog12, which) -> dialog12.dismiss());
+                dialog.setTitle(getString(R.string.attention));
+                dialog.setMessage(R.string.facebook_login_info);
+                dialog.setPositiveButton(R.string.ok, (dialog1, which) -> authWithFacebook());
+                dialog.setNegativeButton(R.string.close, (dialog12, which) -> dialog12.dismiss());
                 AlertDialog alertDialog = dialog.create();
                 alertDialog.show();
             }
-
         });
 
         loginBtn.setOnClickListener(v -> authWithMailAndPass());
 
-        createAccountBtn.setOnClickListener(v ->{
+        createAccountBtn.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             Bungee.slideLeft(LoginActivity.this);
+        });
 
-
-        }) ;
-
-        changePass.setOnClickListener(v ->{
+        changePass.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, ChangePassByEmail.class));
             Bungee.slideLeft(LoginActivity.this);
         });
 
         rememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(buttonView.isChecked()){
+            if (buttonView.isChecked()) {
                 rememberUser();
-            }else if(!buttonView.isChecked()){
+            } else if (!buttonView.isChecked()) {
                 forgotUser();
             }
         });
@@ -127,17 +118,17 @@ public class LoginActivity extends AppCompatActivity {
     private void handleFacebookToken(AccessToken accessToken) {
         AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
         auth.signInWithCredential(credential).addOnCompleteListener(LoginActivity.this, task -> {
-            if(task.isSuccessful()){
+            if (task.isSuccessful()) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 updateUI(user);
-            }else{
+            } else {
                 Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(LoginActivity.this,DashboardActivity.class);
+        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
         startActivity(intent);
     }
 
@@ -150,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
 
-        if(result.getResultCode() == Activity.RESULT_OK){
+        if (result.getResultCode() == Activity.RESULT_OK) {
             Intent intent = result.getData();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(intent);
             try {
@@ -159,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 assert account != null;
                 firebaseAuthWithGoogle(account.getIdToken());
-                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -174,9 +165,9 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
-                        startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
+                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                         finish();
-                        Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
 
                     } else {
                         // If sign in fails, display a message to the user.
@@ -185,12 +176,12 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void authWithFacebook(){
+    private void authWithFacebook() {
         LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("public_profile"));
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
                 handleFacebookToken(loginResult.getAccessToken());
             }
 
@@ -206,41 +197,41 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void authWithMailAndPass(){
+    private void authWithMailAndPass() {
         String email, password;
         email = emailBox.getText().toString();
         password = passwordBox.getText().toString();
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                if(auth.getCurrentUser().isEmailVerified()){
-                    startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
-                    Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(LoginActivity.this, "Verify your email address", Toast.LENGTH_SHORT).show();
+            if (task.isSuccessful()) {
+                if (auth.getCurrentUser().isEmailVerified()) {
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                    Toast.makeText(LoginActivity.this, R.string.success, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, R.string.verify_email, Toast.LENGTH_SHORT).show();
                 }
-            }else{
+            } else {
                 Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void rememberOrNot(){
+    private void rememberOrNot() {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-        String checkBox =  preferences.getString("remember", "");
-        if(checkBox.equals("true")){
-            startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
+        String checkBox = preferences.getString("remember", "");
+        if (checkBox.equals("true")) {
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         }
     }
 
-    private void rememberUser(){
+    private void rememberUser() {
         SharedPreferences preferences1 = getSharedPreferences("checkbox", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences1.edit();
         editor.putString("remember", "true");
         editor.apply();
     }
 
-    private void forgotUser(){
+    private void forgotUser() {
         SharedPreferences preferences1 = getSharedPreferences("checkbox", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences1.edit();
         editor.putString("remember", "false");
@@ -254,9 +245,9 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-        String checkBox =  preferences.getString("remember", "");
-        if(checkBox.equals("true") && user!=null){
-            startActivity(new Intent(LoginActivity.this,DashboardActivity.class));
+        String checkBox = preferences.getString("remember", "");
+        if (checkBox.equals("true") && user != null) {
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         }
     }
 }

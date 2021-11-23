@@ -39,7 +39,7 @@ public class UserHistory extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Search...");
+        progressDialog.setMessage(getString(R.string.search));
         progressDialog.show();
 
         home = findViewById(R.id.homeBtn);

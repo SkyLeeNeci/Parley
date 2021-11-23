@@ -109,7 +109,7 @@ public class DashboardActivity extends AppCompatActivity {
         userHistory.put("roomName", "Default Name");
         userHistory.put("roomCode", roomCode);
         userHistory.put("date", formatter.format(date));
-        documentReference.set(userHistory).addOnSuccessListener(unused -> Toast.makeText(DashboardActivity.this, "Code saved", Toast.LENGTH_SHORT).show());
+        documentReference.set(userHistory).addOnSuccessListener(unused -> Toast.makeText(DashboardActivity.this, getString(R.string.code_saved), Toast.LENGTH_SHORT).show());
 
     }
 
