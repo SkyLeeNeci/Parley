@@ -45,11 +45,11 @@
     <string name="code_saved">Код запам\'ятовано</string>
     <string name="remove_info_about_visited_room">Видалити інформацію про кімнату?</string>
     <string name="set_new_room_name">Введіть нову назву кімнати :</string>
-    <string name="removed">Видалено</string>
+    <string name="removed">Видалено. Оновіть сторінку для корректного відображення даних.</string>
     <string name="facebook_login_info">У зв’язку з оновленням правил безпеки,
         авторизація через сервіс Facebook доступна лише з встановленим додатком Facebook.
         Будь ласка, увійдіть до свого аккаунта з програми Facebook.</string>
-    <string name="updated">Оновлено</string>
+    <string name="updated">Оновлено. Оновіть сторінку для корректного відображення даних.</string>
     <string name="verify_email">Перевірте пошту та активуйте аккаунт</string>
     <string name="search">Пошук…</string>
 
