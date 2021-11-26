@@ -36,12 +36,6 @@ public class UserHistory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_history);
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage(getString(R.string.search));
-        progressDialog.show();
-
         home = findViewById(R.id.homeBtn);
         settings = findViewById(R.id.settingsBtn);
         logOut = findViewById(R.id.logOutBtn);
@@ -78,25 +72,12 @@ public class UserHistory extends AppCompatActivity {
         db.collection("userVisitedRoom").whereEqualTo("userID", user.getUid())
                 .addSnapshotListener((value, error) -> {
 
-                    if (error != null) {
-
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-
-                        Timber.e(error.getLocalizedMessage());
-                    }
 
                     for (DocumentChange documentChange : value.getDocumentChanges()) {
                         if (documentChange.getType() == DocumentChange.Type.ADDED) {
                             histories.add(documentChange.getDocument().toObject(History.class));
                         }
-
                         historyAdapter.notifyDataSetChanged();
-
-                        if (progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
                     }
                 });
     }
