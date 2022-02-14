@@ -7,6 +7,11 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,10 +21,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new Handler().postDelayed(() -> {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                finish();
+            }
+        });
+
+       /* new Handler().postDelayed(() -> {
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
             finish();
-        }, 1500);
+        }, 2500);*/
     }
 
     private void setLocate(String language) {
