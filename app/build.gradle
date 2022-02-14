@@ -6,7 +6,7 @@ plugins {
 
 
 android {
-    compileSdk 30
+    compileSdk 31
 
     defaultConfig {
         applicationId "karpenko.test.parley"
@@ -62,5 +62,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:[8.1)'
 
     implementation 'com.github.Binary-Finery:Bungee:3.0'
+
+    implementation 'com.google.android.gms:play-services-ads:20.5.0'
 
 }
