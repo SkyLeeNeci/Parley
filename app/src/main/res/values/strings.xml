@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Parley</string>
     <string name="facebook_app_id">409595807302543</string>
-    <string name="fb_login_protocol_scheme">fb409595807302543</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb409595807302543</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="remember_me">Remember me</string>
@@ -51,6 +51,8 @@
     <string name="updated">Updated . Please refresh the page to display the data correctly. </string>
     <string name="verify_email">Check email and verify account</string>
     <string name="search">Search…</string>
+    <string name="admob_test" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_key" translatable="false">ca-app-pub-9430601095385092/1471405329</string>
 
 
 </resources>
