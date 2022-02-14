@@ -7,15 +7,25 @@
     android:background="@color/teal_700"
     tools:context=".DashboardActivity">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.gms.ads.AdView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="50dp"
-        app:cardCornerRadius="15dp"
+        android:layout_margin="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +42,7 @@
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:layout_margin="15dp"
                 android:contentDescription="@string/logo"
                 app:srcCompat="@drawable/discussion" />
@@ -41,9 +51,10 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
+                android:layout_margin="13dp"
                 android:gravity="center_horizontal"
                 android:text="@string/activity_dashboard_info"
+                android:textSize="20sp"
                 tools:ignore="TextContrastCheck" />
 
             <EditText
@@ -56,13 +67,14 @@
                 android:gravity="center"
                 android:hint="@string/enter_secret_code_here"
                 android:importantForAutofill="no"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textSize="34sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
@@ -75,7 +87,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
                     android:text="@string/join"
-                    android:textSize="14sp" />
+                    android:textSize="24sp" />
 
                 <Button
                     android:id="@+id/shareLinkBtn"
@@ -84,7 +96,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/button_style"
-                    android:text="@string/share" />
+                    android:text="@string/share"
+                    android:textSize="24sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -94,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="-5dp"
         android:background="#FDE3DB"
         android:visibility="visible"
         app:elevation="8dp"
@@ -105,6 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"
+        app:itemIconSize="40dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

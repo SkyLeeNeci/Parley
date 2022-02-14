@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +28,7 @@
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="300dp"
                 android:layout_margin="15dp"
                 android:contentDescription="@string/logo"
                 app:srcCompat="@drawable/discussion" />
@@ -41,6 +40,7 @@
                 android:layout_margin="3dp"
                 android:gravity="center_horizontal"
                 android:text="@string/change_setting_and_apply"
+                android:textSize="34sp"
                 tools:ignore="TextContrastCheck" />
 
             <ScrollView
@@ -56,38 +56,38 @@
                     <TextView
                         android:id="@+id/changeLang"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
                         android:background="#CAC9C9"
                         android:gravity="center|left"
                         android:padding="5dp"
                         android:text="@string/change_language"
                         android:textColor="#000000"
-                        android:textSize="15sp" />
+                        android:textSize="48sp" />
 
                     <TextView
                         android:id="@+id/changePassBasic"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
                         android:background="#CAC9C9"
                         android:gravity="center|left"
                         android:padding="5dp"
                         android:text="@string/change_password"
                         android:textColor="#000000"
-                        android:textSize="15sp" />
+                        android:textSize="48sp" />
 
                     <TextView
                         android:id="@+id/deleteAccBtn"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_margin="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
                         android:background="#CAC9C9"
                         android:gravity="center_vertical"
                         android:padding="5dp"
                         android:text="@string/delete_acc"
                         android:textColor="#000000"
-                        android:textSize="15sp" />
+                        android:textSize="48sp" />
 
                 </LinearLayout>
             </ScrollView>
@@ -97,13 +97,12 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="-10dp"
         android:background="#FDE3DB"
         android:visibility="visible"
-        app:elevation="8dp"
+        app:itemIconSize="50dp"
         app:itemIconTint="@color/black"
         app:itemTextColor="#000000"
         app:labelVisibilityMode="labeled"

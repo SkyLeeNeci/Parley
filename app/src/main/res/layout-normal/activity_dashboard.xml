@@ -2,17 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    tools:context=".SettingsActivity">
+    tools:context=".DashboardActivity">
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.gms.ads.AdView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +33,7 @@
         tools:visibility="visible">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#D8D8D8"
             android:orientation="vertical"
@@ -40,58 +53,49 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:gravity="center_horizontal"
-                android:text="@string/change_setting_and_apply"
+                android:text="@string/activity_dashboard_info"
                 tools:ignore="TextContrastCheck" />
 
-            <ScrollView
+            <EditText
+                android:id="@+id/secreatCodeBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="48dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/text_box"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/enter_secret_code_here"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/connectBtn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="vertical">
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style"
+                    android:text="@string/join"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/changeLang"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_margin="10dp"
-                        android:background="#CAC9C9"
-                        android:gravity="center|left"
-                        android:padding="5dp"
-                        android:text="@string/change_language"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/changePassBasic"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_margin="10dp"
-                        android:background="#CAC9C9"
-                        android:gravity="center|left"
-                        android:padding="5dp"
-                        android:text="@string/change_password"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/deleteAccBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_margin="10dp"
-                        android:background="#CAC9C9"
-                        android:gravity="center_vertical"
-                        android:padding="5dp"
-                        android:text="@string/delete_acc"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-            </ScrollView>
-
+                <Button
+                    android:id="@+id/shareLinkBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_style"
+                    android:text="@string/share" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -112,4 +116,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

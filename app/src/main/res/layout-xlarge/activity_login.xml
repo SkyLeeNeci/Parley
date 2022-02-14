@@ -8,14 +8,25 @@
     android:background="@color/teal_700"
     tools:context=".LoginActivity">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.gms.ads.AdView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/mar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="60dp"
+        android:layout_margin="30dp"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +43,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@drawable/discussion" />
 
@@ -40,18 +51,18 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="@string/app_name"
                 android:textColor="#3E3D3D"
-                android:textSize="34sp" />
+                android:textSize="60sp" />
 
             <EditText
                 android:id="@+id/userEmailBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="25dp"
                 android:background="@drawable/text_box"
                 android:drawableStart="@drawable/gmail"
                 android:drawablePadding="10dp"
@@ -61,13 +72,14 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:padding="5dp"
-                android:scrollbarAlwaysDrawHorizontalTrack="false" />
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:textSize="60sp" />
 
             <EditText
                 android:id="@+id/passwordBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="25dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/text_box"
@@ -78,11 +90,13 @@
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:textSize="60sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:orientation="horizontal">
 
                 <CheckBox
@@ -94,7 +108,7 @@
                     android:checked="false"
                     android:text="@string/remember_me"
                     android:textColor="#455A64"
-                    android:textSize="14sp"
+                    android:textSize="34sp"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
@@ -104,7 +118,8 @@
                     android:layout_marginEnd="10dp"
                     android:gravity="right"
                     android:text="@string/forgot_password"
-                    android:textColor="#455A64" />
+                    android:textColor="#455A64"
+                    android:textSize="34sp" />
 
             </LinearLayout>
 
@@ -113,22 +128,26 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_margin="30dp"
                 android:background="@drawable/button_style"
                 android:elegantTextHeight="false"
                 android:gravity="center"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:textSize="60sp" />
 
             <Button
                 android:id="@+id/createAccBtn"
-                android:layout_width="160dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="15dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="120dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/button_style"
                 android:gravity="center"
                 android:text="@string/create_account"
-                android:textSize="12sp" />
+                android:textSize="48sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -146,20 +165,22 @@
 
         <ImageView
             android:id="@+id/signInWithGoogle"
-            android:layout_width="195dp"
-            android:layout_height="38dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/images_btn_google_signin_dark_normal" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/signInWithFacebook"
-            android:layout_width="220dp"
-            android:layout_height="48dp"
+            android:layout_width="433dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="35dp"
             android:layout_weight="1"
-            android:minHeight="50dp" />
+            android:gravity="left"
+            android:minHeight="150dp"
+            android:textSize="48sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
